@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/swiper.min.css">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="head">
+            <div class="img">
+                <img src="img/logo.png" alt="">
+            </div>
+            <div class="icon">
+                <i class="fa fa-search"></i>
+                <i class="fa fa-camera"></i>
+            </div>
+        </div>
+        </div>
+        <div class="ban">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="img/ban1.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/ban2.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/ban3.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/ban4.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/ban5.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/ban6.jpg" alt="">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="ban-down-cont">
+            <p><i class="fa fa-bank"></i>全国———刷农行银联白金卡...<span>2017-11-03</span></p>
+            <p><i class="fa fa-bank"></i>中国农业银行博士后科研2018...<span>2017-11-03</span></p>
+        </div>
+        <div class="ul-item">
+            
+        </div>
+    </div>
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+    <script>
+        
+        function ajax(url){
+            return new Promise(function(resolve,reject){
+                var xhr=null;
+                var hander = function(){
+                    if(xhr.readyState!==4){
+                        return -1;
+                    }
+                    if(xhr.status==200){
+                        resolve(xhr.responseText);
+                    }else{
+                        reject(new Error(xhr.responseText));
+                    }
+                }
+                if(window.XMLHttpRequest){
+                    xhr=new XMLHttpRequest();
+                }else{
+                    xhr=new ActiveXObject('Microsoft XMLHTTP');
+                }
+                xhr.open('GET',url,true);
+                xhr.send();
+                xhr.onreadystatechange=hander;
+            })
+        }
+        ajax('http://localhost:8080/datajson').then(function(result){
+            var data = JSON.parse(result);
+            var str = '';
+            var cont = data['data'];
+            for(var j=0;j<3;j++){
+                str += '<ul>';
+                for(var i in cont){
+                    str+=`<li><i class="${cont[i]['icon']}"></i><span>${cont[i]['cont']}</span></li>`;
+                }
+                str+=`</ul>`;
+            }
+            document.querySelector('.ul-item').innerHTML+=str;
+        }).catch(function(error){
+            console.log('nocuole');
+        });
+        new Swiper('.swiper-container',{
+            pagination:'.swiper-pagination',
+            loop:true,
+            paginationClickable:true,
+            autoplay:2000,
+            effect:'flide'
+        });
+    </script>
+</body>
+</html>

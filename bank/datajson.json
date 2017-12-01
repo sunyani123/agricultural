@@ -1,0 +1,22 @@
+{
+    "dataimg":["img/ban1.jpg","img/ban2.jpg","img/ban3.jpg","img/ban4.jpg","img/ban5.jpg","img/ban6.jpg"],
+    "tit":"便捷服务",
+    "data":[
+        {
+            "icon":"fa fa-etsy",
+            "cont":"行情数据"
+        },
+        {
+            "icon":"fa fa-gitlab",
+            "cont":"图说农行"
+        },
+        {
+            "icon":"fa fa-safari",
+            "cont":"行情数据"
+        },
+        {
+            "icon":"fa fa-gitlab",
+            "cont":"行情数据"
+        }
+    ]
+}
